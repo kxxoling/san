@@ -3,14 +3,17 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+
 [dev-packages]
+
 yapf = "*"
+ipython = "*"
 
 
 [packages]
 
 sanic = "*"
-aioredis = "*"
+aioredis = "==0.3.3"
 aiohttp = "*"
 "jinja2" = "*"
 

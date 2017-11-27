@@ -1,3 +1,5 @@
+import asyncio
+
 import aioredis
 import aiohttp
 
@@ -36,7 +38,8 @@ async def get_cached_mmr(r, steam_id, type_='solo'):
         mmr = team_mmr
     else:
         mmr = estimate_mmr
-    await set_mmr(r, steam_id, 'solo', solo_mmr)
-    await set_mmr(r, steam_id, 'team', team_mmr)
-    await set_mmr(r, steam_id, 'estimate', estimate_mmr)
+    await asyncio.wait([
+        set_mmr(r, steam_id, 'solo', solo_mmr),
+        set_mmr(r, steam_id, 'team', team_mmr),
+        set_mmr(r, steam_id, 'estimate', estimate_mmr)])
     return mmr
